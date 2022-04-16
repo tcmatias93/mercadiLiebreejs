@@ -61,14 +61,14 @@ const controller = {
   // Update - Method to update
   update: (req, res) => {
     let id = req.params.id;
-    let product = products.find((product) => product.id == id);
 
-    products.forEach((product) => {
+    let productEditado = products.forEach((product) => {
       if (product.id == id) {
         let productEdit = {
           id,
           ...req.body,
         };
+        return productEdit;
       }
     });
 
@@ -79,7 +79,8 @@ const controller = {
   // Delete - Delete one product from DB
   destroy: (req, res) => {
     let id = req.params.id;
-
+    let productDelite = products.filter((product) => product.id != id); // busco en el json con filter el id y elimina el que es el id buscar
+    fs.writeFileSync(productsFilePath, JSON.stringify(productDelite), "utf-8");
     res.redirect("/");
     // Do the magic
   },

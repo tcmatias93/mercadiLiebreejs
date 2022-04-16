@@ -17,7 +17,7 @@ router.get("/detail/:id", productsController.detail);
 
 /*** EDIT ONE PRODUCT ***/
 router.get("/edit/:id", productsController.edit);
-router.put("/:id", productsController.update);
+router.put("/edit/:id", productsController.update);
 
 /*** DELETE ONE PRODUCT***/
 router.delete("/:id", productsController.destroy);
