@@ -60,18 +60,11 @@ const controller = {
   },
   // Update - Method to update
   update: (req, res) => {
-    let id = req.params.id;
-
-    let productEditado = products.forEach((product) => {
-      if (product.id == id) {
-        let productEdit = {
-          id,
-          ...req.body,
-        };
-        return productEdit;
-      }
-    });
-
+    let idProduct = req.params.id;
+    let product = products.filter((producto) => producto.id != idProduct);
+    productEdit = { id: idProduct, ...req.body, image: "default-image.png" };
+    product.push(productEdit);
+    fs.writeFileSync(productsFilePath, JSON.stringify(product));
     res.redirect("/");
     // Do the magic
   },
